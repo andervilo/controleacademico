@@ -93,6 +93,28 @@
 
         <!-- Left side column. contains the logo and sidebar -->
         @include('layouts.sidebar')
+
+        {{-- Including flash_message --}}
+        @if(Session::has('flash_message'))
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <em> {!! session('flash_message') !!}</em>
+                </div>
+
+                </div>
+            </div>
+        @endif
+
+        {{-- Including error file --}}
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                @include ('errors.list')
+            </div>
+        </div>
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @yield('content')
