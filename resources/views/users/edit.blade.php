@@ -6,7 +6,9 @@
 
 <div class='col-lg-6 col-lg-offset-3'>
 
-    <h1><i class='fa fa-user-circle-o'></i> Editar: {{$user->name}}</h1>
+    <h1>
+    <img  class="img-rounded" width="34" src="{{asset('images/icons/usersedit1.png')}}">
+ 	Editar: {{$user->name}}</h1>
     <hr>
 
     {{ Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) }}{{-- Form model binding to automatically populate our fields with user data --}}

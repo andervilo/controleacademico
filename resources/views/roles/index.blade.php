@@ -32,12 +32,17 @@
 
                                 <td>{{ $role->name }}</td>
 
-                                <td>{{ str_replace(array('[',']','"'),'', $role->permissions()->pluck('name')) }}</td>{{-- Retrieve array of permissions associated to a role and convert to string --}}
                                 <td>
-                                <a href="{{ URL::to('roles/'.$role->id.'/edit') }}" class="btn btn-sm btn-info pull-left" style="margin-right: 3px;">Edit</a>
+                                    @foreach ($role->permissions()->pluck('name') as $name)
+                                <span class="label label-warning">{{ $name }}</span>
+                                    @endforeach
+                                </td>
+
+                                <td>
+                                <a href="{{ URL::to('roles/'.$role->id.'/edit') }}" class="btn btn-sm btn-info pull-left" style="margin-right: 3px;">Editar</a>
 
                                 {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id] ]) !!}
-                                {!! Form::submit('Delete', ['class' => 'btn btn-sm btn-danger']) !!}
+                                {!! Form::submit('Excluir', ['class' => 'btn btn-sm btn-danger']) !!}
                                 {!! Form::close() !!}
 
                                 </td>

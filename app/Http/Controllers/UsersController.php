@@ -96,6 +96,8 @@ class UsersController extends Controller {
         $user = User::findOrFail($id); //Get user with specified id
         $roles = Role::get(); //Get all roles
 
+        //dd($roles->pluck('name'));
+
         return view('users.edit', compact('user', 'roles')); //pass user and roles data to view
 
     }

@@ -49,3 +49,5 @@ Route::resource('nota_frequencias', 'NotaFrequenciaAPIController');
 Route::resource('turma_recursos', 'TurmaRecursoAPIController');
 
 Route::resource('turma_salas', 'TurmaSalaAPIController');
+
+Route::resource('rotas', 'RotasAPIController');

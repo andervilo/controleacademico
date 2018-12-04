@@ -47,11 +47,25 @@ class RolesController extends AppBaseController
      */
     public function store(Request $request) {
     //Validate name and permissions field
-        $this->validate($request, [
+
+        $request->validate(
+            [
+                'name'=>'required|unique:roles|max:20',
+                'permissions' =>'required',
+            ],
+            [
+                'name.required'=>'Campo NOME é obrigatório!',
+                'name.unique'=>'Já existe uma Role com esse nome!',
+                'name.max'=>'Nome da Role maior que 10 caracteres!',
+                'permissions.required'=>'Selecione pelo menos uma PERMISSÃO!'
+            ]
+        );
+
+        /*$this->validate($request, [
             'name'=>'required|unique:roles|max:10',
             'permissions' =>'required',
             ]
-        );
+        );*/
 
         $name = $request['name'];
         $role = new Role();
@@ -70,7 +84,7 @@ class RolesController extends AppBaseController
 
         return redirect()->route('roles.index')
             ->with('flash_message',
-             'Role'. $role->name.' added!');
+             'Role '. $role->name.' adicionada!');
     }
 
     /**
@@ -92,6 +106,8 @@ class RolesController extends AppBaseController
     public function edit($id) {
         $role = Role::findOrFail($id);
         $permissions = Permission::all();
+
+        //dd($role->permissions()->pluck('name'));
 
         return view('roles.edit', compact('role', 'permissions'));
     }
