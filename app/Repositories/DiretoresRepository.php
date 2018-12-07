@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Diretores;
 use InfyOm\Generator\Common\BaseRepository;
+use App\Traits\Repository\PessoaRepositoryTrait;
 
 /**
  * Class DiretoresRepository
@@ -16,6 +17,7 @@ use InfyOm\Generator\Common\BaseRepository;
 */
 class DiretoresRepository extends BaseRepository
 {
+    use PessoaRepositoryTrait;
     /**
      * @var array
      */

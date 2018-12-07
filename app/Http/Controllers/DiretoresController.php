@@ -33,10 +33,14 @@ class DiretoresController extends AppBaseController
     public function index(Request $request)
     {
         $this->diretoresRepository->pushCriteria(new RequestCriteria($request));
-        $diretores = $this->diretoresRepository->with('pessoa')->all();
+        $q = $request->q;
+        $diretores = $this->diretoresRepository
+        ->with('pessoa')
+        ->wherePessoa($q)
+        ->paginate(10)
+        ;
 
-        return view('diretores.index')
-            ->with('diretores', $diretores);
+        return view('diretores.index', ['diretores'=> $diretores,'q'=>$q]);
     }
 
     /**
@@ -118,7 +122,7 @@ class DiretoresController extends AppBaseController
      */
     public function update($id, UpdateDiretoresRequest $request)
     {
-        
+
         $diretor = $this->diretoresRepository->findWithoutFail($id);
 
         if (empty($diretor)) {

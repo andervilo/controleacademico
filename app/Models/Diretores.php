@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 //use Illuminate\Database\Eloquent\Model;
+use App\Traits\Model\PessoaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Diretores extends Model
 {
     use SoftDeletes;
+    use PessoaModel;
 
     public $table = 'diretores';
 

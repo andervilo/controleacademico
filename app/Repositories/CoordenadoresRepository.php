@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Coordenadores;
 use InfyOm\Generator\Common\BaseRepository;
+use App\Traits\Repository\PessoaRepositoryTrait;
 
 /**
  * Class CoordenadoresRepository
@@ -16,6 +17,7 @@ use InfyOm\Generator\Common\BaseRepository;
 */
 class CoordenadoresRepository extends BaseRepository
 {
+    use PessoaRepositoryTrait;
     /**
      * @var array
      */
