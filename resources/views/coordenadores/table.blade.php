@@ -11,18 +11,18 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($coordenadores as $coordenadores)
+        @foreach($coordenadores as $coordenador)
             <tr>
-                <td>{!! $coordenadores->id_funcional !!}</td>
-                <td>{!! $coordenadores->pessoa->nome !!}</td>            
-                <td>{!! $coordenadores->pessoa->telefone !!}</td>
-                <td>{!! $coordenadores->pessoa->celular !!}</td>
-                <td>{!! $coordenadores->pessoa->email !!}</td>
+                <td>{!! $coordenador->id_funcional !!}</td>
+                <td>{!! $coordenador->pessoa->nome !!}</td>
+                <td>{!! $coordenador->pessoa->telefone !!}</td>
+                <td>{!! $coordenador->pessoa->celular !!}</td>
+                <td>{!! $coordenador->pessoa->email !!}</td>
                 <td>
-                    {!! Form::open(['route' => ['coordenadores.destroy', $coordenadores->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => ['coordenadores.destroy', $coordenador->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{!! route('coordenadores.show', [$coordenadores->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                        <a href="{!! route('coordenadores.edit', [$coordenadores->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                        <a href="{!! route('coordenadores.show', [$coordenador->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                        <a href="{!! route('coordenadores.edit', [$coordenador->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                     </div>
                     {!! Form::close() !!}
@@ -31,4 +31,7 @@
         @endforeach
         </tbody>
     </table>
+    <div class="text-center">
+        {!! $coordenadores->appends(['q'=>$q])->links() !!}
+    </div>
 </div>

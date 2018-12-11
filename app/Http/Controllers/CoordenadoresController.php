@@ -33,10 +33,14 @@ class CoordenadoresController extends AppBaseController
     public function index(Request $request)
     {
         $this->coordenadoresRepository->pushCriteria(new RequestCriteria($request));
-        $coordenadores = $this->coordenadoresRepository->with('pessoa')->all();
+        $q = $request->q;
+        $coordenadores = $this->coordenadoresRepository
+        ->with('pessoa')
+        ->wherePessoa($q)
+        ->paginate(10)
+        ;
 
-        return view('coordenadores.index')
-            ->with('coordenadores', $coordenadores);
+        return view('coordenadores.index', ['coordenadores'=> $coordenadores,'q'=>$q]);
     }
 
     /**

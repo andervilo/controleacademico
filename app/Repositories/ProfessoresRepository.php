@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Professores;
 use InfyOm\Generator\Common\BaseRepository;
+use App\Traits\Repository\PessoaRepositoryTrait;
 
 /**
  * Class ProfessoresRepository
@@ -16,6 +17,7 @@ use InfyOm\Generator\Common\BaseRepository;
 */
 class ProfessoresRepository extends BaseRepository
 {
+    use PessoaRepositoryTrait;
     /**
      * @var array
      */
@@ -31,4 +33,6 @@ class ProfessoresRepository extends BaseRepository
     {
         return Professores::class;
     }
+
+
 }

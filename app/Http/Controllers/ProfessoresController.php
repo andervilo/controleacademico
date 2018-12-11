@@ -33,10 +33,14 @@ class ProfessoresController extends AppBaseController
     public function index(Request $request)
     {
         $this->professoresRepository->pushCriteria(new RequestCriteria($request));
-        $professores = $this->professoresRepository->with('pessoa')->all();
+        $q = $request->q;
+        $professores = $this->professoresRepository
+        ->with('pessoa')
+        ->wherePessoa($q)
+        ->paginate(10)
+        ;
 
-        return view('professores.index')
-            ->with('professores', $professores);
+        return view('professores.index',['professores'=> $professores,'q'=>$q]);
     }
 
     /**
@@ -126,7 +130,7 @@ class ProfessoresController extends AppBaseController
             return redirect(route('professores.index'));
         }
         $pessoa_id = $request->all()['pessoa_id'];
-        
+
         $pessoa  = $this->pessoasRepository->update($request->all(), $pessoa_id);
         $professores = $this->professoresRepository->update($request->all(), $id);
 

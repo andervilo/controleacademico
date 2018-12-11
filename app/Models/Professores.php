@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use App\Traits\Model\PessoaModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -17,14 +18,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Professores extends Model
 {
     use SoftDeletes;
-
+    use PessoaModel;
     public $table = 'professores';
-    
+
 
     protected $dates = ['deleted_at'];
 
     protected $appends = ['fullname'];
-    
+
     public $fillable = [
         'id_funcional',
         'pessoa_id',
@@ -56,14 +57,16 @@ class Professores extends Model
     {
         return $this->belongsTo(Pessoas::class,'pessoa_id');
     }
-    
+
+
+
     public function cursos()
     {
         return $this->belongsToMany(\App\Models\Cursos::class);
     }
-    
+
     public function getFullnameAttribute(){
-    
+
         return "{$this->pessoa->nome}";
     }
 }
