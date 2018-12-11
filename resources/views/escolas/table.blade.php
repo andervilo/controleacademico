@@ -1,6 +1,7 @@
 <table class="table table-responsive" id="escolas-table">
     <thead>
         <tr>
+            <th>ID[Tenant]</th>
             <th>Nome</th>
         <th>Endereco</th>
         <th>Numero</th>
@@ -14,6 +15,7 @@
     <tbody>
     @foreach($escolas as $escolas)
         <tr>
+            <td>{!! $escolas->id !!}</td>
             <td>{!! $escolas->nome !!}</td>
             <td>{!! $escolas->endereco !!}</td>
             <td>{!! $escolas->numero !!}</td>

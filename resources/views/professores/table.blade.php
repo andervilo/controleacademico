@@ -2,10 +2,12 @@
     <thead>
         <tr>
             <th>Id Funcional</th>
-            <th>Nome</th>
+            <th>
+            	Nome
+        	</th>
             <th>Telefone</th>
             <th>Celular</th>
-            <th>Email</th>
+            <th>E-mail</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -13,7 +15,7 @@
     @foreach($professores as $professores)
         <tr>
             <td>{!! $professores->id_funcional !!}</td>
-            <td>{!! $professores->pessoa->nome !!}</td>            
+            <td>{!! $professores->pessoa->nome !!} </td>           
             <td>{!! $professores->pessoa->telefone !!}</td>
             <td>{!! $professores->pessoa->celular !!}</td>
             <td>{!! $professores->pessoa->email !!}</td>

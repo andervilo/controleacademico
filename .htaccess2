@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+   ServerAdmin webmaster@dummy-host.example.com
+   DocumentRoot "/home/sites/public_html"
+
+   Alias /webservices "/home/sites/public_html/public"
+   <Directory "/home/sites/public_html/public">
+       Options Indexes FollowSymLinks Includes ExecCGI
+       AllowOverride All
+       Require all granted
+   </Directory>
+</VirtualHost>

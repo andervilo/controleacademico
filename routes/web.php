@@ -74,43 +74,6 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 });
 
-Route::get('/uprotas', function () {
-    $routeCollection = Route::getRoutes();
-
-    $routes = [];
-    
-    foreach ($routeCollection as $key => $route) {
-        //$routes [] = $route;
-        $routes [$key]['uri'] = $route->uri();
-        $routes [$key]['method'] = $route->methods()[0];
-        $routes [$key]['action'] = $route->getActionMethod();        
-        $routes [$key]['module'] = count(explode("\\", $route->getActionName())) == 4 ? explode("Controller@",explode("\\", $route->getActionName())[3])[0] : "";
-    }
-    
-   
-    
-    //dd($routes);
-    
-    foreach ($routes as $route){
-        $rota= new App\Models\Rotas();
-        $rota->create(
-            [
-                'uri'    => $route['uri'],
-                'method' => $route['method'],
-                'action' => $route['action'],
-                'module' => $route['module']
-            ]
-        );
-    }
-    
-
-    //dd($routes);
-
-    //return redirect('/home');
-});
-
-
-
 
 
 Route::resource('rotas', 'RotasController');
