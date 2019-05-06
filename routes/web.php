@@ -15,6 +15,10 @@ Route::get('/', function () {
     return redirect('/home');
 });
 
+Route::get('/testewa', function () {
+    return "Rota de teste";
+});
+
 
 Auth::routes();
 
